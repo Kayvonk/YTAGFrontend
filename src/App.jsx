@@ -33,7 +33,7 @@ function App() {
             console.log(res);
           })
       : axios
-          .post("https://youtubeapologygenerator.onrender.com/api/ask", {
+          .post("https://ytagbackend.onrender.com/api/ask", {
             question: question,
           })
           .then((res) => {
