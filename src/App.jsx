@@ -55,7 +55,7 @@ function App() {
         <h1>Youtube Apology Generator</h1>
         <img id="sorryHands" src={sorryHands} />
         <form onSubmit={handleSubmit}>
-          <h4>What did you to wrong?</h4>
+          <h4>What did you do wrong?</h4>
           <input
             onChange={handleInputChange}
             value={question}
