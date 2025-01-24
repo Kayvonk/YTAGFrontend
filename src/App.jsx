@@ -18,9 +18,8 @@ function App() {
     e.preventDefault();
     setButtonDisabled(true);
     console.log(question);
-    import.meta.env.VITE_NODE_ENV === "development"
-      ? axios
-          .post("http://localhost:3001/api/ask", { question: question })
+    const baseUrl = import.meta.env.VITE_NODE_ENV === "development" ? "http://localhost:3001" : import.meta.env.VITE_PRODUCTION_BACKEND
+   axios.post(`${baseUrl}/api/ask`, { question: question })
           .then((res) => {
             console.log("dev", res.data);
             res.data?.result?.instructions
@@ -31,22 +30,7 @@ function App() {
               : setApology("Sorry, I don't know what to say...");
             setButtonDisabled(false);
             console.log(res);
-          })
-      : axios
-          .post("https://ytagbackend.onrender.com/api/ask", {
-            question: question,
-          })
-          .then((res) => {
-            console.log("prod", res.data);
-            res.data?.result?.instructions
-              ? setInstructions(res.data.result.instructions)
-              : setInstructions("You did what?!");
-            res.data?.result?.apology
-              ? setApology(res.data.result.apology)
-              : setApology("Sorry, I don't know what to say...");
-            setButtonDisabled(false);
-            console.log(res);
-          });
+          })      
   }
 
   return (
